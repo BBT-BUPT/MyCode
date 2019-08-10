@@ -4,9 +4,10 @@ from ..items import ImgspiderItem
 
 class ImgspiderSpider(scrapy.Spider):
     name = 'imgspider'
-    keyword = 'girl' #设置英文关键词
+    keyword = 'beautiful girl' #设置英文关键词
     pageMax = 3
     pageNum = 0
+    picNum = 1
     #allowed_domains = ['s,taobao.com']
     start_urls = ['https://pixabay.com/images/search/{}/'.format(keyword)]
 
@@ -16,9 +17,11 @@ class ImgspiderSpider(scrapy.Spider):
             print(img)
             item = ImgspiderItem()
             item["src"] = [img]
+            item["name"] = self.keyword+"_{}".format(self.picNum)
+            self.picNum +=1
             yield item
         self.pageNum +=1
-        nextpage = 'https://pixabay.com/images/search/girl/?pagi={}'.format(self.pageNum+1)
+        nextpage = 'https://pixabay.com/images/search/{}/?pagi={}'.format(self.keyword,self.pageNum+1)
         print(nextpage)
         if self.pageNum < self.pageMax:
             yield scrapy.Request(url = nextpage,callback=self.parse)

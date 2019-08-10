@@ -67,8 +67,8 @@ LOG_LEVEL = "DEBUG"
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   #'ImgSpider.pipelines.ImgspiderPipeline': 1
-    'scrapy.pipelines.images.ImagesPipeline': 1,
+   'ImgSpider.pipelines.ImgspiderPipeline': 1
+    #'scrapy.pipelines.images.ImagesPipeline': 1,
 }
 IMAGES_STORE = 'C:\\Users\\19779\\Desktop\\MyCode\\ImgSpider'
 IMAGES_URLS_FIELD = 'src'
